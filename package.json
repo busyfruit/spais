@@ -1,0 +1,41 @@
+{
+  "name": "spais",
+  "version": "0.0.1",
+  "description": "Simple Page Application Intergrated Solution",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/busyfruit/spais.git"
+  },
+  "keywords": [
+    "spa",
+    "gulp",
+    "webpack",
+    "webapp"
+  ],
+  "author": "busyfruit",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/busyfruit/spais/issues"
+  },
+  "devDependencies": {
+    "chalk": "^1.0.0",
+    "gulp": "~3.9.0",
+    "gulp-changed": "^1.2.1",
+    "gulp-concat": "^2.5.2",
+    "gulp-less": "^3.0.3",
+    "lodash": "^3.9.3",
+    "node-libs-browser": "~0.5.2",
+    "require-dir": "~0.3.0",
+    "spable-server": "0.0.2",
+    "through2": "^2.0.0",
+    "webpack": "~1.9.10"
+  },
+  "dependencies": {
+    "backbone": "^1.2.1",
+    "jquery": "^2.1.4"
+  }
+}
