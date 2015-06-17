@@ -1,5 +1,6 @@
 var crypto = require('crypto');
 var path = require('path');
+
 module.exports = {
 	md5: function (file, size) {
 		var md5 = crypto.createHash('md5');
@@ -15,5 +16,9 @@ module.exports = {
 		var basename = path.basename(filePath, extname);
 		var dirname = path.dirname(filePath);
 		return path.join(dirname, basename) + '_' + stamp + extname;
+	},
+
+	convertPathToUrl: function (filePath) {
+		return filePath.replace(GLOBAL.OPT_BASE, '').replace(/\\/g, '/');
 	}
 };
