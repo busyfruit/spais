@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>SPA集成开发环境演示</title>
-	<link rel="stylesheet" href="/static/css/main.css">
+	<link rel="stylesheet" href="<%= globalCSS %>">
 </head>
 <body>
 	<nav>
@@ -14,7 +14,7 @@
 	<div class="wrapper" id="wrapper">
 
 	</div>
-	<script src="/static/js/lib.js"></script>
-	<script src="/static/js/main.js"></script>
+	<script src="<%= libJS %>"></script>
+	<script src="<%= entryJS %>"></script>
 </body>
 </html>

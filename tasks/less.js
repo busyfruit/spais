@@ -61,6 +61,18 @@ module.exports = function () {
 	if (GLOBAL.DEV_MODE) {
 		return stream.pipe(gulp.dest(optStaticBase));
 	} else {
-		return stream.pipe(cssMinify()).pipe(gulp.dest(optStaticBase));
+		return (
+			stream.pipe(cssMinify())
+			.pipe(through2.obj(function (file, enc, cb) {
+				if (path.basename(file.path) === 'global.css') {
+					var stamp = util.md5(file, GLOBAL.STAMP_SIZE);
+					var newpath = util.addStamp(file.path, stamp);
+					file.path = newpath;
+				}
+				this.push(file);
+				cb(); 
+			}))
+			.pipe(gulp.dest(optStaticBase))
+		);
 	}
 };

@@ -5,7 +5,7 @@ var webpack = require('webpack');
 
 var contextPath = path.join(GLOBAL.OPT_STATIC_BASE, '/js');
 
-module.exports = function () {
+module.exports = function (cb) {
 	var plugins = [new webpack.optimize.CommonsChunkPlugin('lib', 'lib_[chunkhash].js')];
 	if (GLOBAL.DEV_MODE === false) {
 		plugins.push(new webpack.optimize.UglifyJsPlugin());
@@ -30,7 +30,8 @@ module.exports = function () {
 		}
 	}, function (err, stats) {
 		if (err) {
-			console.log('run webpack task failure, please try again...');
+			cb(err);
 		}
+		cb();
 	});
 };
