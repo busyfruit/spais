@@ -6,10 +6,17 @@ var webpack = require('webpack');
 var contextPath = path.join(GLOBAL.OPT_STATIC_BASE, '/js');
 
 module.exports = function (cb) {
-	var plugins = [new webpack.optimize.CommonsChunkPlugin('lib', 'lib_[chunkhash].js')];
+	var entryFileName = '[name].js';
+	var libJSFileName = 'lib.js';
+	var chunkFileName = 'p[id].js';
+	var plugins = [];
 	if (GLOBAL.DEV_MODE === false) {
 		plugins.push(new webpack.optimize.UglifyJsPlugin());
+		entryFileName = '[name]_[chunkhash].js';
+		libJSFileName = 'lib_[chunkhash].js';
+		chunkFileName = 'p[id]_[chunkhash].js';
 	}
+	plugins.push(new webpack.optimize.CommonsChunkPlugin('lib', libJSFileName));
 	return webpack({
 		context: contextPath,
 		entry: {
@@ -19,8 +26,8 @@ module.exports = function (cb) {
 		output: {
 			path: contextPath,
 			publicPath: '/static/js/',
-			filename: '[name]_[chunkhash].js',
-			chunkFilename: 'p[id]_[chunkhash].js'
+			filename: entryFileName,
+			chunkFilename: chunkFileName
 		},
 		plugins: plugins,
 		resolve: {

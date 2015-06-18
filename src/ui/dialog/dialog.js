@@ -9,8 +9,6 @@ module.exports = {
 		document.body.appendChild(div);
 		this.$el = $(div);
 		this.isHide = true;
-		console.log('_liushouxiang01_');
-		console.log('>>>><<<<<<<<<<<<<<');
 		return this;
 	},
 

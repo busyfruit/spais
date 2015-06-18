@@ -30,7 +30,7 @@ gulp.task('index', ['pack', 'less'], require('./tasks/index.js'));
 
 gulp.task('devserver', require('./tasks/server.js'));
 
-gulp.task('dev', ['devMode', 'index'], function () {
+gulp.task('dev', ['clean', 'devMode', 'index'], function () {
 	var watcher = gulp.watch('./src/**', ['index']);
 	watcher.on('change', function () {
 		console.log(chalk.green('============================================'));
