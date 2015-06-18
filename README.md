@@ -1,1 +1,1 @@
-#单页面应用集成解决方案（Simple Page Application Integrated Solution）
+#单页面应用集成开发环境
