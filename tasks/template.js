@@ -21,7 +21,7 @@ var tmplBase = './src/**/*.tmpl';
 var cssRegExpStr = '<link[^>]+?href="([^>]+)"[^>]*?>';
 var cssRegExp = new RegExp(cssRegExpStr);
 var cssRegExpGlobal = new RegExp(cssRegExpStr, 'g');
-var imgRegExp = /<img([^>]+?)src="([^>]+)"([^>]*?)>/g;
+var imgRegExp = /<img([^>]+?)src="([^>]+?)"([^>]*?)>/g;
 
 module.exports = function () {
 	return gulp.src(tmplBase, {

@@ -1,5 +1,6 @@
 var crypto = require('crypto');
 var path = require('path');
+var chalk = require('chalk');
 
 module.exports = {
 	md5: function (file, size) {
@@ -19,6 +20,13 @@ module.exports = {
 	},
 
 	convertPathToUrl: function (filePath) {
-		return filePath.replace(GLOBAL.OPT_BASE, '').replace(/\\/g, '/');
+		var prefix = GLOBAL.DEV_MODE ? '/static' : GLOBAL.STATIC_URL_PREFIX;
+		var relativePath = filePath.replace(GLOBAL.OPT_STATIC_BASE, '');
+		var useCDN = false;
+		if (prefix.indexOf('http://') === 0) {
+			prefix = prefix.replace('http://', '');
+			useCDN = true;
+		}
+		return (useCDN ? 'http://' : '') + path.join(prefix, relativePath).replace(/\\/g, '/');
 	}
 };

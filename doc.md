@@ -185,7 +185,7 @@ project
 			- global.less
 		- js             入口js文件
 			- main.js    单页面的入口文件
-		- util           工具库js，如dateformatter等
+		- util           工具库js，如dateformatter等，更建议将工具库发布到npm再用npm安装
 		- page           以“页面”为基本单位，page下的每个文件夹对应着一个页面
 			- home       首页
 				- slider 首页的slider组件
@@ -225,9 +225,9 @@ project
 # 一个完整实现
 基于上面提到的各种问题，我最终产出了一个实现版本，取了个牛逼的名字：[spais](https://github.com/busyfruit/spais)（Simple Page Apps Integrated Solution）。但其实并不具有通用性，不支持插件开发，没有在编译的各个环节暴露的各种Hook供调用，更不能拿过去直接应用到项目中。所以，其实，它只是一个基于gulp+webpack的具体实现，还配不上这个高大上的名字。但是我认为一个完全通用的，能满足各种应用场景的，符合所有人口味的完整实现，难度太大了。没有最完美的，只有最适合自己的。所以，基于这套方案，也许可以稍微改造，删除用不到的功能，添加自己想要的功能，能够DIY一个项目专属的解决方案，至于插件开发，gulp和webpack都是支持的。
 
-最后，列一下spais支持的功能：
+**最后，列一下spais支持的功能：**
 
- 1.本地开发服务器，在server.conf中用正则表达式匹配url，指向一个假数据json文件，代码里面就可以调用了。也支持#注释，
+ 1.本地开发服务器，在server.conf中用正则表达式匹配url，指向一个假数据json文件，代码里面就可以放心写ajax调用了，服务器环境源码在[这里](https://github.com/busyfruit/spable-server/blob/master/index.js)，只有170多行代码，采用connect尾触发的方式添加中间件，可随意扩展想要的功能。同时支持#注释，
 比如：
 ```
 # 这里是注释
@@ -262,9 +262,13 @@ project
 
 7.支持文件自动添加md5戳，上线时的缓存更新不需要担心，专注写码就好了。
 
-8.用node的方式来编写和维护前端代码，可随意require文件，可用npm安装模块，初始化项目等等。当然，这都是webpack的功劳。
+8.用node的方式来编写和维护前端代码，可用npm初始化项目，安装模块，不用关心文件路径直接require等等。当然，这都是webpack的功劳。
+
+## 已知bug
+1. windows上编译时有非常低的概率报ENNOENT错误，这是node的windows Installer本身的bug；
 
 ## TODO List
 1. 添加sourcemap支持，开发时，所有的代码虽然不会被压缩，但也打成了一个包，添加sourcemap更方便debug；
 2. 提供联调时的自动发布到测试机功能；
-3. 其他能想到的...
+3. linux环境下自动清理服务器node进程；
+4. 其他能想到的...

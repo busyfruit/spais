@@ -26,14 +26,18 @@ module.exports = function () {
 					entryJS: '/static/js/main.js'
 				};
 			} else {
+				var staticURLPrefix = GLOBAL.STATIC_URL_PREFIX;
+				if (staticURLPrefix.lastIndexOf('/') === staticURLPrefix.length - 1) {
+					staticURLPrefix = staticURLPrefix.slice(0, -1);
+				}
 				fs.readdirSync(GLOBAL.OPT_STATIC_CSS_BASE).forEach(function (fileName) {
 					if (fileName.indexOf('global_') === 0) {
-						data.globalCSS = '/static/css/' + fileName;
+						data.globalCSS = staticURLPrefix + '/css/' + fileName;
 					}
 				});
 				fs.readdirSync(GLOBAL.OPT_STATIC_JS_BASE).forEach(function (fileName) {
 					if (fileName.indexOf('lib_') === 0) {
-						data.libJS = '/static/js/' + fileName;
+						data.libJS = staticURLPrefix + '/js/' + fileName;
 					} else if (fileName.indexOf('main_') === 0) {
 						data.entryJS = '/static/js/' + fileName;
 					}
